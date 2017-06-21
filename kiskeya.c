@@ -6,9 +6,13 @@
 #include <termios.h>  //_getch
 
 //global variable
+
+//controller les tentatives
 int tentatives = 1;
+//verifier si l utilisateur existe
 int isExist = 0;
-int NbredeSuppression = 0;
+//nbre d utilisateur desactiver
+int NbredeDesactivation = 0;
 
 
 
@@ -73,9 +77,9 @@ void changerPasswordUser(int i){
 	printf("succes\n");
 
 	printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		adminInterface();
+	getch();
+	system("clear");
+	adminInterface();
 
 }
 void MenuchangerPasswordUser(){
@@ -126,7 +130,7 @@ void ActiverUser(int i){
 			}
 			usernameDataVerif[i] = usernameData[i];
 			passwordDataVerif[i] = passwordData[i];
-			NbredeSuppression--;
+			NbredeDesactivation--;
 
 			for (l = 1; l < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])); ++l)
 		    {
@@ -150,7 +154,11 @@ void MenuActiverUser(){
 		printf("%s\n",usernameData[i]);
 	}
 
-	scanf("%d", &choix);
+	while((!scanf("%d",&choix)) || choix > 5) {
+	    system("clear");
+	    printf("mauvais choix\n");
+	    MenuActiverUser();
+	}
 	system("clear");
 	isExist = 0;
 	ActiverUser(choix);
@@ -159,9 +167,9 @@ void MenuActiverUser(){
 void DesactiverUser(int i){
 
 	int c,l;
-	NbredeSuppression++;
+	NbredeDesactivation++;
 	
-	for ( c = i  ; c < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])) - NbredeSuppression ; c++ )
+	for ( c = i  ; c < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])) - NbredeDesactivation ; c++ )
 	{
          usernameDataVerif[c] = usernameDataVerif[c+1];
      	 passwordDataVerif[c] = passwordDataVerif[c+1];
@@ -188,7 +196,11 @@ void MenuDesactiverUser(){
 		printf("%s\n",usernameData[i]);
 	}
 
-	scanf("%d", &choix);
+	while((!scanf("%d",&choix)) || choix > 5) {
+	    system("clear");
+	    printf("mauvais choix\n");
+	    MenuDesactiverUser();
+	}
 	system("clear");
 	DesactiverUser(choix);
 }
@@ -299,6 +311,9 @@ void adminInterface(){
 // ****************************************
 // ************USER PART******************
 // ****************************************
+
+
+//client data 
 
 char *NomPrenom[] = {"Joseph Emmanuel"};	
 char *ID[]	={"123-456-789-0"};
