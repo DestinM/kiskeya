@@ -226,7 +226,24 @@ void listeUtilisateur(){
 
 void InfoSurUser(int i){
 	printf("affichage des infos\n\n");
-	printf("username\tpassword\n\n");
+	printf("status\tusername\tpassword\n\n");
+
+		int c = 1;
+		for (c = 1; c < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])); ++c)
+		{
+			 if (usernameDataVerif[i] == usernameData[i])
+			{
+				
+				printf("actif\t");
+				break;
+				
+			} else {
+				printf("inactif\t");
+				break;
+			}
+			
+		}
+
 	
 		printf("%s\t\t",usernameDataVerif[i] );
 		printf("%s\n",passwordDataVerif[i] );
