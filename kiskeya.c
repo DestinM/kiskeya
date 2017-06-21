@@ -326,15 +326,15 @@ void adminInterface(){
 
 char *NomPrenom[] = {"Joseph Emmanuel"};	
 char *ID[]	={"123-456-789-0"};
-char *Adresse[] = {	 "Ave Jean Paul II #218,Turgeau,Port-au-Prince"		};
-char *Telephone[]	= {"509	39	99	9999"}	;
+char *Adresse[] = {	 "Ave JP II #218,Turg,P-au-P"};
+char *Telephone[]	= {"50939999999"};
 char *Email[] = {"abc@abc.com"};
 char *NoCarte[]	={	 "8763-3546-7876-3456"}	;
-double LimiteDeCredit[]={		 100.000	};
-double Disponibilite[]	={74157.50};
-double Dette[]={25832.00};
-double Interet[]	={832.50};
-double Penaliter[] ={0.00};
+double LimiteDeCredit[]={100.0};
+double Disponibilite[]	={74157.5};
+double Dette[]={25832.0};
+double Interet[]={832.50};
+double Penaliter[] ={0.0};
 double MinimumApayer[]	={1549.95};
 
 
@@ -375,7 +375,7 @@ void AjouterClient(){
 
 void InfoSurClient(int i){
 	printf("affichage des infos\n\n");
-	printf("nom\tprenom\tID\t\ttAdresse\tTelephone\tEmail\tNoCarte\tLimiteDeCredit\tDisponibilite\tDette\tInteret\tPenaliter\tMinimumApayer\n\n");
+	printf("nom\tprenom\tID\t\tAdresse\t\t\t\tTelephone\tEmail\t\tNoCarte\t\t\tLimiteDeCredit\tDisponibilite\tDette\tInteret\tPenaliter\tMinimumApayer\n\n");
 	
 		printf("%s\t",NomPrenom[i-1] );
 		printf("%s\t",ID[i-1] );
@@ -511,7 +511,8 @@ void login(){
 
 	
 
-	if(tentatives<3) {
+	if(tentatives<4) {
+
 
 		// do
 		// {
