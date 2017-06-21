@@ -135,7 +135,7 @@ void ActiverUser(int i){
 			passwordDataVerif[i] = passwordData[i];
 			NbredeDesactivation--;
 
-			for (l = 1; l < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])); ++l)
+			for (l = 1; l < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0]))-NbredeDesactivation; ++l)
 		    {
 		    	printf("%s\n",usernameDataVerif[l]);
 		    }
@@ -307,8 +307,8 @@ void adminInterface(){
 		break;
 		case '6':{
 			system("clear");
-			login();
 			isExist = 0;
+			login();
 		}
 		break;
 	}
