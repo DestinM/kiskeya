@@ -178,14 +178,14 @@ void DesactiverUser(int i){
      	 passwordDataVerif[c] = passwordDataVerif[c+1];
     }
     printf("desactivation reussie\n\n");
-    for (l = 1; l < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0]))-1; ++l)
+    for (l = 1; l < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0]))-NbredeDesactivation; ++l)
     {
     	printf("%s\n",usernameDataVerif[l]);
     }
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		adminInterface();
+	printf("\n\npress any key to continue");
+	getch();
+	system("clear");
+	adminInterface();
 }
 
 void MenuDesactiverUser(){
@@ -193,11 +193,11 @@ void MenuDesactiverUser(){
 	char choix;
 	printf("presser un numero pour desactiver un utilisateur\n\n");
 
-	for (i = 1; i < 6; ++i)
+	for (i = 1; i < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0]))-NbredeDesactivation; ++i)
 	{	
 		
 		printf("%d)\t", i);
-		printf("%s\n",usernameData[i]);
+		printf("%s\n",usernameDataVerif[i]);
 	}
 
 	scanf("%s",&choix);
