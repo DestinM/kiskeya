@@ -83,7 +83,8 @@ void changerPasswordUser(int i){
 
 }
 void MenuchangerPasswordUser(){
-	int i,choix;
+	int i;
+	char choix;
 	printf("presser un numero pour changer le mot de passe d un utilisateu\n\n");
 
 	for (i = 1; i < 6; ++i)
@@ -94,8 +95,10 @@ void MenuchangerPasswordUser(){
 	}
 
 	
-		while((!scanf("%d",&choix)) || choix > 5) {
-			printf("choix incorrect\n");
+		scanf("%s",&choix);
+		if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
+			system("clear");
+			printf("mauvais choix\n");
 		    MenuchangerPasswordUser();
 		}
 	system("clear");
@@ -186,7 +189,8 @@ void DesactiverUser(int i){
 }
 
 void MenuDesactiverUser(){
-	int i,choix;
+	int i;
+	char choix;
 	printf("presser un numero pour desactiver un utilisateur\n\n");
 
 	for (i = 1; i < 6; ++i)
@@ -196,13 +200,14 @@ void MenuDesactiverUser(){
 		printf("%s\n",usernameData[i]);
 	}
 
-	while((!scanf("%d",&choix)) || choix > 5) {
-	    system("clear");
-	    printf("mauvais choix\n");
+	scanf("%s",&choix);
+	if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
+		system("clear");
+		printf("mauvais choix\n");
 	    MenuDesactiverUser();
 	}
 	system("clear");
-	DesactiverUser(choix);
+	DesactiverUser(choix-'0');
 }
 
 void listeUtilisateur(){
@@ -232,7 +237,8 @@ void InfoSurUser(int i){
 }
 
 void MenuInfoSurUser(){
-	int i,choix;
+	int i;
+	char choix;
 	printf("presser un numero pour avoir plus d info sur un utilisateur\n\n");
 
 	for (i = 1; i < 6; ++i)
@@ -242,17 +248,18 @@ void MenuInfoSurUser(){
 		printf("%s\n",usernameData[i]);
 	}
 
-	while(!(scanf("%d", &choix)) || choix > 5){
+	scanf("%s",&choix);
+	if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
 		system("clear");
 		printf("mauvais choix\n");
 		MenuInfoSurUser();
 	}
 	system("clear");
-	InfoSurUser(choix);
+	InfoSurUser(choix-'0');
 }
 
 void adminInterface(){
-	int choix;
+	char choix;
 	printf("\t\t\t\t\t\t\t\t\tNom de l’Institution financière\n");
 	printf("\t\t\t\t\t\t\t\t\tInterface administrateur\n\n\n\n");
 	printf("\t\t\t\t\t-----------------------------------------------------------------------------------------------\n\n");
@@ -264,39 +271,41 @@ void adminInterface(){
 	printf("(5) changer le mot de passe d un utilisateur:\n");
 	printf("(6) Sortir du systeme:\n");
 
-	while((!scanf("%d",&choix)) || choix > 6){
+
+	scanf("%s",&choix);
+	if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6'){
 		system("clear");
 		printf("mauvais choix\n");
 		adminInterface();
 	}
 
 	switch (choix){
-		case 1:{
+		case '1':{
 			system("clear");
 			listeUtilisateur();
 		}
 		break;
-		case 2:{
+		case '2':{
 			system("clear");
 			MenuInfoSurUser();
 		}
 		break;
-		case 3:{
+		case '3':{
 			system("clear");
 			MenuActiverUser();
 		}
 		break;
-		case 4:{
+		case '4':{
 			system("clear");
 			MenuDesactiverUser();
 		}
 		break;
-		case 5:{
+		case '5':{
 			system("clear");
 			MenuchangerPasswordUser();
 		}
 		break;
-		case 6:{
+		case '6':{
 			system("clear");
 			login();
 			isExist = 0;
@@ -387,7 +396,8 @@ void InfoSurClient(int i){
 }
 
 void MenuInfoSurClient(){
-	int i,choix;
+	int i,transformToInt;
+	char choix;
 	printf("presser un numero pour avoir plus d info sur un client\n\n");
 
 	for (i = 0; i <  (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])); ++i)
@@ -397,9 +407,14 @@ void MenuInfoSurClient(){
 		printf("%s\n",NomPrenom[i]);
 	}
 
-	scanf("%d", &choix);
+	scanf("%s",&choix);
+	transformToInt = choix - '0';
+	if( transformToInt > (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])) || transformToInt == 0){
+		system("clear");
+		printf("mauvais choix\n");
+	}
 	system("clear");
-	InfoSurClient(choix);
+	InfoSurClient(transformToInt);
 }
 
 
@@ -418,7 +433,7 @@ void listeClient(){
 }
 
 void userInterface(){
-	int choix;
+	char choix;
 	printf("\t\t\t\t\t\t\t\t\tNom de l’Institution financière\n");
 	printf("\t\t\t\t\t\t\t\t\tInterface utilisateur\n\n\n\n");
 	printf("\t\t\t\t\t-----------------------------------------------------------------------------------------------\n\n");
@@ -431,44 +446,45 @@ void userInterface(){
 	printf("(6) Effectuer un billing:\n");
 	printf("(7) Sortir du systeme:\n");
 
-	while((!scanf("%d",&choix)) || choix > 7){
+	scanf("%s",&choix);
+	if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6' && choix!='7'){
 		system("clear");
 		printf("mauvais choix\n");
 		userInterface();
 	}
 
 	switch (choix){
-		case 1:{
+		case '1':{
 			system("clear");
 			listeClient();
 		}
 		break;
-		case 2:{
+		case '2':{
 			system("clear");
 			MenuInfoSurClient();
 		}
 		break;
-		case 3:{
+		case '3':{
 			system("clear");
 			AjouterClient();
 		}
 		break;
-		case 4:{
+		case '4':{
 			system("clear");
 			// PasserPaiement();
 		}
 		break;
-		case 5:{
+		case '5':{
 			system("clear");
 			// PasserRenversement();
 		}
 		break;
-		case 6:{
+		case '6':{
 			system("clear");
 			// EffectuerBilling();
 		}
 		break;
-		case 7:{
+		case '7':{
 			system("clear");
 			login();
 			isExist = 0;
