@@ -70,6 +70,8 @@ void changerPasswordUser(int i){
 
 	char newPassword[50] ;
 
+	printf("i = %d\n", i);
+
 	printf("Entrer nouveau mot de passe\n");
 	scanf("%s",&newPassword);
 	passwordDataVerif[i] = &newPassword;
@@ -95,8 +97,8 @@ void MenuchangerPasswordUser(){
 	}
 
 	
-		scanf("%s",&choix);
-		if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
+		scanf("%d",&choix);
+		if( choix!=1 && choix!=2 && choix!=3 && choix!=4 && choix!=5){
 			system("clear");
 			printf("mauvais choix\n");
 		    MenuchangerPasswordUser();
