@@ -338,6 +338,54 @@ double Penaliter[] ={0.0};
 double MinimumApayer[]	={1549.95};
 
 
+void PasserRenverssement(int i){
+
+}
+void MenuPasserRenversement(){
+	int i,transformToInt;
+	char choix;
+	printf("presser un numero pour avoir plus d info sur un client\n\n");
+
+	for (i = 0; i <  (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])); ++i)
+	{	
+		
+		printf("(%d)\t", i+1);
+		printf("%s\n",NomPrenom[i]);
+	}
+
+	scanf("%s",&choix);
+	transformToInt = choix - '0';
+	if( transformToInt > (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])) || transformToInt == 0){
+		system("clear");
+		printf("mauvais choix\n");
+	}
+	system("clear");
+	PasserRenverssement(transformToInt);
+}
+void PasserPaiement(int i){
+
+}
+void MenuPasserPaiement(){
+	int i,transformToInt;
+	char choix;
+	printf("presser un numero pour avoir plus d info sur un client\n\n");
+
+	for (i = 0; i <  (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])); ++i)
+	{	
+		
+		printf("(%d)\t", i+1);
+		printf("%s\n",NomPrenom[i]);
+	}
+
+	scanf("%s",&choix);
+	transformToInt = choix - '0';
+	if( transformToInt > (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])) || transformToInt == 0){
+		system("clear");
+		printf("mauvais choix\n");
+	}
+	system("clear");
+	PasserPaiement(transformToInt);
+}
 void AjouterClient(){
 	char nom[50];
 	char prenom[50];
@@ -471,12 +519,12 @@ void userInterface(){
 		break;
 		case '4':{
 			system("clear");
-			// PasserPaiement();
+			MenuPasserPaiement();
 		}
 		break;
 		case '5':{
 			system("clear");
-			// PasserRenversement();
+			MenuPasserRenversement();
 		}
 		break;
 		case '6':{
