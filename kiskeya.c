@@ -342,19 +342,18 @@ void adminInterface(){
 
 
 //client data 
-
-char *NomPrenom[] = {"Joseph Emmanuel"};	
-char *ID[]	={"123-456-789-0"};
-char *Adresse[] = {	 "Ave JP II #218,Turg,P-au-P"};
-char *Telephone[]	= {"50939999999"};
-char *Email[] = {"abc@abc.com"};
-char *NoCarte[]	={	 "8763-3546-7876-3456"}	;
-double LimiteDeCredit[]={100.0};
-double Disponibilite[]	={74157.5};
-double Dette[]={25832.0};
-double Interet[]={832.50};
-double Penaliter[] ={0.0};
-double MinimumApayer[]	={1549.95};
+char *nomPrenom[] = {"Joseph Emmanuel"};	
+char *id[]	={"123-456-789-0"};
+char *adresse[] = {	 "Ave JP II #218,Turg,P-au-P"};
+char *telephone[]	= {"50939999999"};
+char *email[] = {"abc@abc.com"};
+char *noCarte[]	={	 "8763-3546-7876-3456"}	;
+double limiteCredit[]={100.0};
+double disponibilite[]	={74157.5};
+double dette[]={25832.0};
+double interet[]={832.50};
+double penaliter[] ={0.0};
+double minimumApayer[]	={1549.95};
 
 
 void PasserRenverssement(int i){
@@ -365,16 +364,16 @@ void MenuPasserRenversement(){
 	char choix;
 	printf("presser un numero pour avoir plus d info sur un client\n\n");
 
-	for (i = 0; i <  (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])); ++i)
+	for (i = 0; i <  (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])); ++i)
 	{	
 		
 		printf("(%d)\t", i+1);
-		printf("%s\n",NomPrenom[i]);
+		printf("%s\n",nomPrenom[i]);
 	}
 
 	scanf("%s",&choix);
 	transformToInt = choix - '0';
-	if( transformToInt > (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])) || transformToInt == 0){
+	if( transformToInt > (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])) || transformToInt == 0){
 		system("clear");
 		printf("mauvais choix\n");
 	}
@@ -389,16 +388,16 @@ void MenuPasserPaiement(){
 	char choix;
 	printf("presser un numero pour avoir plus d info sur un client\n\n");
 
-	for (i = 0; i <  (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])); ++i)
+	for (i = 0; i <  (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])); ++i)
 	{	
 		
 		printf("(%d)\t", i+1);
-		printf("%s\n",NomPrenom[i]);
+		printf("%s\n",nomPrenom[i]);
 	}
 
 	scanf("%s",&choix);
 	transformToInt = choix - '0';
-	if( transformToInt > (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])) || transformToInt == 0){
+	if( transformToInt > (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])) || transformToInt == 0){
 		system("clear");
 		printf("mauvais choix\n");
 	}
@@ -410,27 +409,28 @@ void AjouterClient(){
 	char prenom[50];
 	printf("\nAjout d u n client\n\n");
 	printf("Entrer son nom\n");
-	scanf("%s",&NomPrenom[(int)(sizeof(NomPrenom)/sizeof(NomPrenom[0]))+1]);
-	printf("Entrer l Adresse\n");
-	scanf("%s",&Adresse[(int)(sizeof(Adresse)/sizeof(Adresse[0]))+1]);
-	printf("Entrer l Telephone\n");
-	scanf("%s",&Telephone[(int)(sizeof(Telephone)/sizeof(Telephone[0]))+1]);
+	scanf("%s",&nomPrenom[(int)(sizeof(nomPrenom)/sizeof(nomPrenom[0]))+1]);
+	fgets(&nomPrenom[(int)(sizeof(nomPrenom)/sizeof(nomPrenom[0]))+1], sizeof(&nomPrenom[(int)(sizeof(nomPrenom)/sizeof(nomPrenom[0]))+1]), stdin);
+	printf("Entrer l adresse\n");
+	scanf("%s",&adresse[(int)(sizeof(adresse)/sizeof(adresse[0]))+1]);
+	printf("Entrer l telephone\n");
+	scanf("%s",&telephone[(int)(sizeof(telephone)/sizeof(telephone[0]))+1]);
 	printf("Entrer l email\n");
-	scanf("%s",&Email[(int)(sizeof(Email)/sizeof(Email[0]))+1]);
-	printf("Entrer l NoCarte\n");
-	scanf("%s",&NoCarte[(int)(sizeof(NoCarte)/sizeof(NoCarte[0]))+1]);
+	scanf("%s",&email[(int)(sizeof(email)/sizeof(email[0]))+1]);
+	printf("Entrer l noCarte\n");
+	scanf("%s",&noCarte[(int)(sizeof(noCarte)/sizeof(noCarte[0]))+1]);
 
-	LimiteDeCredit[(int)(sizeof(LimiteDeCredit)/sizeof(LimiteDeCredit[0]))] = 0.0;
+	limiteCredit[(int)(sizeof(limiteCredit)/sizeof(limiteCredit[0]))] = 0.0;
 
-	Disponibilite[(int)(sizeof(Disponibilite)/sizeof(Disponibilite[0]))] = 0.0;
+	disponibilite[(int)(sizeof(disponibilite)/sizeof(disponibilite[0]))] = 0.0;
 
-	Dette[(int)(sizeof(Dette)/sizeof(Dette[0]))] = 0.0;
+	dette[(int)(sizeof(dette)/sizeof(dette[0]))] = 0.0;
 
-	Interet[(int)(sizeof(Interet)/sizeof(Interet[0]))] = 0.0;
+	interet[(int)(sizeof(interet)/sizeof(interet[0]))] = 0.0;
 
-	Penaliter[(int)(sizeof(Penaliter)/sizeof(Penaliter[0]))] = 0.0;
+	penaliter[(int)(sizeof(penaliter)/sizeof(penaliter[0]))] = 0.0;
 
-	MinimumApayer[(int)(sizeof(MinimumApayer)/sizeof(MinimumApayer[0]))] = 0.0;
+	minimumApayer[(int)(sizeof(minimumApayer)/sizeof(minimumApayer[0]))] = 0.0;
 
 	printf("Inscription reussie\n");
 	printf("\n\npress any key to continue");
@@ -442,20 +442,20 @@ void AjouterClient(){
 
 void InfoSurClient(int i){
 	printf("affichage des infos\n\n");
-	printf("nom\tprenom\tID\t\tAdresse\t\t\t\tTelephone\tEmail\t\tNoCarte\t\t\tLimiteDeCredit\tDisponibilite\tDette\tInteret\tPenaliter\tMinimumApayer\n\n");
+	printf("nom\tprenom\tid\t\tadresse\t\t\t\ttelephone\temail\t\tnoCarte\t\t\tlimiteCredit\tdisponibilite\tdette\tinteret\tpenaliter\tminimumApayer\n\n");
 	
-		printf("%s\t",NomPrenom[i-1] );
-		printf("%s\t",ID[i-1] );
-		printf("%s\t",Adresse[i-1] );
-		printf("%s\t",Telephone[i-1] );
-		printf("%s\t",Email[i-1] );
-		printf("%s\t",NoCarte[i-1] );
-		printf("%f\t",LimiteDeCredit[i-1] );
-		printf("%f\t",Disponibilite[i-1] );
-		printf("%f\t",Dette[i-1] );
-		printf("%f\t",Interet[i-1] );
-		printf("%f\t",Penaliter[i-1] );
-		printf("%f\n",MinimumApayer[i-1] );
+		printf("%s\t",nomPrenom[i-1] );
+		printf("%s\t",id[i-1] );
+		printf("%s\t",adresse[i-1] );
+		printf("%s\t",telephone[i-1] );
+		printf("%s\t",email[i-1] );
+		printf("%s\t",noCarte[i-1] );
+		printf("%f\t",limiteCredit[i-1] );
+		printf("%f\t",disponibilite[i-1] );
+		printf("%f\t",dette[i-1] );
+		printf("%f\t",interet[i-1] );
+		printf("%f\t",penaliter[i-1] );
+		printf("%f\n",minimumApayer[i-1] );
 		printf("\n\npress any key to continue");
 		getch();
 		system("clear");
@@ -467,16 +467,16 @@ void MenuInfoSurClient(){
 	char choix;
 	printf("presser un numero pour avoir plus d info sur un client\n\n");
 
-	for (i = 0; i <  (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])); ++i)
+	for (i = 0; i <  (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])); ++i)
 	{	
 		
 		printf("(%d)\t", i+1);
-		printf("%s\n",NomPrenom[i]);
+		printf("%s\n",nomPrenom[i]);
 	}
 
 	scanf("%s",&choix);
 	transformToInt = choix - '0';
-	if( transformToInt > (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])) || transformToInt == 0){
+	if( transformToInt > (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])) || transformToInt == 0){
 		system("clear");
 		printf("mauvais choix\n");
 	}
@@ -489,9 +489,9 @@ void listeClient(){
 	int i;
 	printf("affichage de la liste des clients\n\n");
 
-	for (i = 0; i < (int)(sizeof(NomPrenom)/sizeof(NomPrenom[0])); ++i)
+	for (i = 0; i < (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])); ++i)
 	{
-		printf("%s\n",NomPrenom[i] );
+		printf("%s\n",nomPrenom[i] );
 	}
 	printf("\n\npress any key to continue");
 	getch();
