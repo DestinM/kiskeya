@@ -352,7 +352,7 @@ int id[];
 char *adresse[];
 char *telephone[];
 char *email[];
-char *noCarte[];
+long noCarte[];
 double limiteCredit[20];
 double disponibilite[20];
 double dette[20];
@@ -371,6 +371,7 @@ void EffectuerBilling(int i){
 	penaliter [ i-1] = 0.03 * dette [i-1];
 	interet[i-1] = 0.0333 * dette[i-1];
 	minimumApayer[i-1] = 0.06 * dette [i-1];
+	printf("Billing reussie\n");
 	printf("\n\npress any key to continue");
 	getch();
 	system("clear");
@@ -528,8 +529,8 @@ void AjouterClient(){
 	scanf("%s",&telephone[NbreAjoutPourClient]);
 	printf("Entrer l email:");
 	scanf("%s",&email[NbreAjoutPourClient]);
-	printf("Entrer l noCarte:");
-	scanf("%s",&noCarte[NbreAjoutPourClient]);
+
+	noCarte[NbreAjoutPourClient] = NbreAjoutPourClient +99;
 
 	limiteCredit[NbreAjoutPourClient] = 0.0;
 
@@ -557,15 +558,15 @@ void AjouterClient(){
 
 void InfoSurClient(int i){
 	printf("affichage des infos\n\n");
-	printf("nom\tprenom\tid\tadresse\ttelephone\temail\tnoCarte\tlimiteCredit\tdisponibilite\tdette\tinteret\tpenaliter\tminimumApayer\n\n");
+	printf("nom\tprenom\tid\tadresse\ttelephone\temail\tnoCarte\tlimiteCredit\tdisponibilite\tdette\t\tinteret\t\tpenaliter\tminimumApayer\n\n");
 	
 	printf("%s\t",&nom[i-1] );
 	printf("%s\t",&Prenom[i-1] );
 	printf("%d\t",id[i-1] );
 	printf("%s\t",&adresse[i-1] );
-	printf("%s\t",&telephone[i-1] );
+	printf("%s\t\t",&telephone[i-1] );
 	printf("%s\t",&email[i-1] );
-	printf("%s\t",&noCarte[i-1] );
+	printf("%d\t",noCarte[i-1] );
 	printf("%lf\t",limiteCredit[i-1] );
 	printf("%lf\t",disponibilite[i-1] );
 	printf("%lf\t",dette[i-1] );
