@@ -371,6 +371,10 @@ void EffectuerBilling(int i){
 	penaliter [ i-1] = 0.03 * dette [i-1];
 	interet[i-1] = 0.0333 * dette[i-1];
 	minimumApayer[i-1] = 0.06 * dette [i-1];
+	printf("\n\npress any key to continue");
+	getch();
+	system("clear");
+	userInterface();
 }
 void MenuEffectuerBilling(){
 	char choix;
@@ -393,7 +397,7 @@ void MenuEffectuerBilling(){
 			for (i = 0; i < NbreAjoutPourClient+1; ++i)
 			{
 				printf("(%d)\t",i+1 );
-				printf("%s\t",&nom[i] );
+				printf("%s\t\t",&nom[i] );
 				printf("%s\t\t",&Prenom[i] );
 				printf("%d\n",id[i] );
 			}
@@ -443,7 +447,7 @@ void MenuPasserRenversement(){
 			for (i = 0; i < NbreAjoutPourClient+1; ++i)
 			{
 				printf("(%d)\t",i+1 );
-				printf("%s\t",&nom[i] );
+				printf("%s\t\t",&nom[i] );
 				printf("%s\t\t",&Prenom[i] );
 				printf("%d\n",id[i] );
 			}
@@ -463,10 +467,9 @@ void PasserPaiement(int i){
 	printf("Entrer le montant:");
 	scanf("%lf",&montant);
 
-	achat[i] = montant;
+	achat[i-1] = montant;
 	
 	disponibilite[i-1] += montant;
-	printf("%d\n",i-1 );
 	printf("%lf\n", disponibilite[i-1]);
 	printf("paiement reussie\n");
 
@@ -496,7 +499,7 @@ void MenuPasserPaiement(){
 			for (i = 0; i < NbreAjoutPourClient+1; ++i)
 			{
 				printf("(%d)\t",i+1 );
-				printf("%s\t",&nom[i] );
+				printf("%s\t\t",&nom[i] );
 				printf("%s\t\t",&Prenom[i] );
 				printf("%d\n",id[i] );
 			}
@@ -543,7 +546,7 @@ void AjouterClient(){
 	id[NbreAjoutPourClient] = NbreAjoutPourClient+1;
 	
 
-	printf("Inscription reussie\n");
+	printf("\n\nInscription reussie\n");
 
 	printf("\n\npress any key to continue");
 	getch();
@@ -554,21 +557,21 @@ void AjouterClient(){
 
 void InfoSurClient(int i){
 	printf("affichage des infos\n\n");
-	printf("nom\tprenom\tid\t\tadresse\ttelephone\t\temail\tnoCarte\t\tlimiteCredit\tdisponibilite\t\tdette\tinteret\t\tpenaliter\tminimumApayer\n\n");
+	printf("nom\tprenom\tid\tadresse\ttelephone\temail\tnoCarte\tlimiteCredit\tdisponibilite\tdette\tinteret\tpenaliter\tminimumApayer\n\n");
 	
 	printf("%s\t",&nom[i-1] );
 	printf("%s\t",&Prenom[i-1] );
-	printf("%s\t\t",&id[i-1] );
+	printf("%d\t",id[i-1] );
 	printf("%s\t",&adresse[i-1] );
-	printf("%s\t\t",&telephone[i-1] );
+	printf("%s\t",&telephone[i-1] );
 	printf("%s\t",&email[i-1] );
-	printf("%s\t\t",&noCarte[i-1] );
-	printf("%f\t",&limiteCredit[i-1] );
-	printf("%f\t\t",&disponibilite[i-1] );
-	printf("%f\t",&dette[i-1] );
-	printf("%f\t\t",&interet[i-1] );
-	printf("%f\t",&penaliter[i-1] );
-	printf("%f\n",&minimumApayer[i-1] );
+	printf("%s\t",&noCarte[i-1] );
+	printf("%lf\t",limiteCredit[i-1] );
+	printf("%lf\t",disponibilite[i-1] );
+	printf("%lf\t",dette[i-1] );
+	printf("%lf\t",interet[i-1] );
+	printf("%lf\t",penaliter[i-1] );
+	printf("%lf\n",minimumApayer[i-1] );
 	printf("\n\npress any key to continue");
 	getch();
 	system("clear");
@@ -596,9 +599,9 @@ void MenuInfoSurClient(){
 			for (i = 0; i < NbreAjoutPourClient+1; ++i)
 			{
 				printf("(%d)\t",i+1 );
-				printf("%s\t",&nom[i] );
+				printf("%s\t\t",&nom[i] );
 				printf("%s\t\t",&Prenom[i] );
-				printf("%lf\n",id[i] );
+				printf("%d\n",id[i] );
 			}
 			scanf("%s",&choix);
 			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
