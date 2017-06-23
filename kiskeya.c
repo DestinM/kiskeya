@@ -35,35 +35,35 @@ char *passwordDataVerif[]   = {"admin", "jean123","joseph2017","junior2014","dav
 
 //function getch linux
 char getch(){
-	char buf=0;
-	struct termios old={0};
-	fflush(stdout);
-	if(tcgetattr(0, &old)<0)
-		perror("tcsetattr()");
-	old.c_lflag&=~ICANON;
-	old.c_lflag&=~ECHO;
-	old.c_cc[VMIN]=1;
-	old.c_cc[VTIME]=0;
-	if(tcsetattr(0, TCSANOW, &old)<0)
-		perror("tcsetattr ICANON");
-	if(read(0,&buf,1)<0)
-		perror("read()");
-	old.c_lflag|=ICANON;
-	old.c_lflag|=ECHO;
-	if(tcsetattr(0, TCSADRAIN, &old)<0)
-		perror ("tcsetattr ~ICANON");
-	return buf;
-}
-void ActiverSurUser(int i){
+    char buf=0;
+    struct termios old={0};
+    fflush(stdout);
+    if(tcgetattr(0, &old)<0)
+        perror("tcsetattr()");
+    old.c_lflag&=~ICANON;
+    old.c_lflag&=~ECHO;
+    old.c_cc[VMIN]=1;
+    old.c_cc[VTIME]=0;
+    if(tcsetattr(0, TCSANOW, &old)<0)
+        perror("tcsetattr ICANON");
+    if(read(0,&buf,1)<0)
+        perror("read()");
+    old.c_lflag|=ICANON;
+    old.c_lflag|=ECHO;
+    if(tcsetattr(0, TCSADRAIN, &old)<0)
+        perror ("tcsetattr ~ICANON");
+    return buf;
+ }
+ void ActiverSurUser(int i){
 	printf("affichage des infos\n\n");
 	printf("username\tpassword\n\n");
 	
-	printf("%s\t\t",usernameData[i-1] );
-	printf("%s\n",passwordData[i-1] );
-	printf("\n\npress any key to continue");
-	getch();
-	system("clear");
-	adminInterface();
+		printf("%s\t\t",usernameData[i-1] );
+		printf("%s\n",passwordData[i-1] );
+		printf("\n\npress any key to continue");
+		getch();
+		system("clear");
+		adminInterface();
 }
 
 void changerPasswordUser(int i){
@@ -97,12 +97,12 @@ void MenuchangerPasswordUser(){
 	}
 
 	
-	scanf("%d",&choix);
-	if( choix!=1 && choix!=2 && choix!=3 && choix!=4 && choix!=5){
-		system("clear");
-		printf("mauvais choix\n");
-		MenuchangerPasswordUser();
-	}
+		scanf("%d",&choix);
+		if( choix!=1 && choix!=2 && choix!=3 && choix!=4 && choix!=5){
+			system("clear");
+			printf("mauvais choix\n");
+		    MenuchangerPasswordUser();
+		}
 	system("clear");
 	changerPasswordUser(choix);
 }
@@ -112,40 +112,40 @@ void ActiverUser(int i){
 	int c=6;
 	int l;
 	
-	for (c = 1; c < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])); ++c)
-	{
-		if (usernameDataVerif[i] == usernameData[i])
+		for (c = 1; c < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])); ++c)
 		{
-
-			isExist  = 1;
-			printf("compte deja activer\n");
-			break;
-
+			 if (usernameDataVerif[i] == usernameData[i])
+			{
+				
+				isExist  = 1;
+				printf("compte deja activer\n");
+				break;
+				
+			}
+			
 		}
 
-	}
-
-
-	if (isExist==0)
-	{
-		while(c>i) {
-			usernameDataVerif[c] = usernameDataVerif[c-1];
-			passwordDataVerif[c] = passwordDataVerif[c-1];
-			c--;
-		}
-		usernameDataVerif[i] = usernameData[i];
-		passwordDataVerif[i] = passwordData[i];
-		NbredeDesactivation--;
-
-		for (l = 1; l < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0]))-NbredeDesactivation; ++l)
+		
+		if (isExist==0)
 		{
-			printf("%s\n",usernameDataVerif[l]);
+			while(c>i) {
+			    usernameDataVerif[c] = usernameDataVerif[c-1];
+     		    passwordDataVerif[c] = passwordDataVerif[c-1];
+     		    c--;
+			}
+			usernameDataVerif[i] = usernameData[i];
+			passwordDataVerif[i] = passwordData[i];
+			NbredeDesactivation--;
+
+			for (l = 1; l < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0]))-NbredeDesactivation; ++l)
+		    {
+		    	printf("%s\n",usernameDataVerif[l]);
+		    }
 		}
-	}
-	printf("\n\npress any key to continue");
-	getch();
-	system("clear");
-	adminInterface();
+		printf("\n\npress any key to continue");
+		getch();
+		system("clear");
+		adminInterface();
 }
 
 void MenuActiverUser(){
@@ -160,9 +160,9 @@ void MenuActiverUser(){
 	}
 
 	while((!scanf("%d",&choix)) || choix > 5) {
-		system("clear");
-		printf("mauvais choix\n");
-		MenuActiverUser();
+	    system("clear");
+	    printf("mauvais choix\n");
+	    MenuActiverUser();
 	}
 	system("clear");
 	isExist = 0;
@@ -176,14 +176,14 @@ void DesactiverUser(int i){
 	
 	for ( c = i  ; c < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])) - NbredeDesactivation ; c++ )
 	{
-		usernameDataVerif[c] = usernameDataVerif[c+1];
-		passwordDataVerif[c] = passwordDataVerif[c+1];
-	}
-	printf("desactivation reussie\n\n");
-	for (l = 1; l < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0]))-NbredeDesactivation; ++l)
-	{
-		printf("%s\n",usernameDataVerif[l]);
-	}
+         usernameDataVerif[c] = usernameDataVerif[c+1];
+     	 passwordDataVerif[c] = passwordDataVerif[c+1];
+    }
+    printf("desactivation reussie\n\n");
+    for (l = 1; l < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0]))-NbredeDesactivation; ++l)
+    {
+    	printf("%s\n",usernameDataVerif[l]);
+    }
 	printf("\n\npress any key to continue");
 	getch();
 	system("clear");
@@ -206,7 +206,7 @@ void MenuDesactiverUser(){
 	if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
 		system("clear");
 		printf("mauvais choix\n");
-		MenuDesactiverUser();
+	    MenuDesactiverUser();
 	}
 	system("clear");
 	DesactiverUser(choix-'0');
@@ -230,29 +230,29 @@ void InfoSurUser(int i){
 	printf("affichage des infos\n\n");
 	printf("status\tusername\tpassword\n\n");
 
-	int c = 1;
-	for (c = 1; c < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])); ++c)
-	{
-		if (usernameDataVerif[i] == usernameData[i])
+		int c = 1;
+		for (c = 1; c < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])); ++c)
 		{
-
-			printf("actif\t");
-			break;
-
-		} else {
-			printf("inactif\t");
-			break;
+			 if (usernameDataVerif[i] == usernameData[i])
+			{
+				
+				printf("actif\t");
+				break;
+				
+			} else {
+				printf("inactif\t");
+				break;
+			}
+			
 		}
 
-	}
-
 	
-	printf("%s\t\t",usernameData[i] );
-	printf("%s\n",passwordData[i] );
-	printf("\n\npress any key to continue");
-	getch();
-	system("clear");
-	adminInterface();
+		printf("%s\t\t",usernameDataVerif[i] );
+		printf("%s\n",passwordDataVerif[i] );
+		printf("\n\npress any key to continue");
+		getch();
+		system("clear");
+		adminInterface();
 }
 
 void MenuInfoSurUser(){
@@ -341,338 +341,164 @@ void adminInterface(){
 // ****************************************
 
 
-
-//pr controler les ajous pour les clients
-int NbreAjoutPourClient  = -1;
-
 //client data 
-char *nom[];
-char *Prenom[];	
-int id[];
-char *adresse[];
-char *telephone[];
-char *email[];
-long noCarte[];
-double limiteCredit[9];
-double disponibilite[9];
-double dette[9];
-double interet[9];
-double penaliter[9];
-double minimumApayer[9];
-double achat[9];
+char *nomPrenom[] = {"Joseph Emmanuel"};	
+char *id[]	={"123-456-789-0"};
+char *adresse[] = {	 "Ave JP II #218,Turg,P-au-P"};
+char *telephone[]	= {"50939999999"};
+char *email[] = {"abc@abc.com"};
+char *noCarte[]	={	 "8763-3546-7876-3456"}	;
+double limiteCredit[]={100.0};
+double disponibilite[]	={74157.5};
+double dette[]={25832.0};
+double interet[]={832.50};
+double penaliter[] ={0.0};
+double minimumApayer[]	={1549.95};
 
 
-
-
-void EffectuerBilling(int i){
-	if (achat[i-1] != 0)
-	{
-		dette [i-1] = achat [i-1] + interet[i-1] + penaliter [i-1]; 
-		disponibilite[i-1] = limiteCredit[i-1] - dette[i-1];
-		penaliter [ i-1] = 0.03 * dette [i-1];
-		interet[i-1] = 0.0333 * dette[i-1];
-		minimumApayer[i-1] = 0.06 * dette [i-1];
-		achat[i-1] = 0;
-		printf("Billing reussie\n");
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		userInterface();
-	}
-	else{
-		printf("Billing deja effectuer sur l achat\n");
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		userInterface();
-	}
-}
-void MenuEffectuerBilling(){
-	char choix;
-	if(NbreAjoutPourClient==-1){
-
-		printf("il n existe pas encore de client\n");
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		userInterface();
-	}
-	else{
-
-
-		
-		if(NbreAjoutPourClient!=-1){
-			printf("presser un numero pour effectuer un billing\n\n");
-			printf("\tnom\t\tPrenom\t\tId\n");
-
-			int i;
-
-			for (i = 0; i < NbreAjoutPourClient+1; ++i)
-			{
-				printf("(%d)\t",i+1 );
-				printf("%s\t\t",&nom[i] );
-				printf("%s\t\t",&Prenom[i] );
-				printf("%d\n",id[i] );
-			}
-			scanf("%s",&choix);
-
-			while( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6' && choix!='7' && choix!='8' && choix!='9'){
-				system("clear");
-				printf("mauvais choix\n");
-				MenuEffectuerBilling();
-			}
-			system("clear");
-			EffectuerBilling(choix-'0');
-		}
-	}
-}
 void PasserRenverssement(int i){
-	double montant;
-	printf("Entrer le montant:");
-	scanf("%lf",&montant);
-	disponibilite[i-1] -= montant;
-	printf("%d\n",i-1 );
-	printf("%lf\n", disponibilite[i-1]);
-	printf("renversement reussie\n");
 
-	printf("\n\npress any key to continue");
-	getch();
-	system("clear");
-	userInterface();
 }
 void MenuPasserRenversement(){
+	int i,transformToInt;
 	char choix;
-	if(NbreAjoutPourClient==-1){
+	printf("presser un numero pour avoir plus d info sur un client\n\n");
 
-		printf("il n existe pas encore de client\n");
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		userInterface();
-	}
-	else{
+	for (i = 0; i <  (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])); ++i)
+	{	
 		
-		if(NbreAjoutPourClient!=-1){
-			printf("presser un numero pour passer un paiement\n\n");
-			printf("\tnom\t\tPrenom\t\tId\n");
-
-			int i;
-
-			for (i = 0; i < NbreAjoutPourClient+1; ++i)
-			{
-				printf("(%d)\t",i+1 );
-				printf("%s\t\t",&nom[i] );
-				printf("%s\t\t",&Prenom[i] );
-				printf("%d\n",id[i] );
-			}
-			scanf("%s",&choix);
-			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6' && choix!='7' && choix!='8' && choix!='9'){
-				system("clear");
-				printf("mauvais choix\n");
-				MenuPasserRenversement();
-			}
-			system("clear");
-			PasserRenverssement(choix-'0');
-		}
+		printf("(%d)\t", i+1);
+		printf("%s\n",nomPrenom[i]);
 	}
+
+	scanf("%s",&choix);
+	transformToInt = choix - '0';
+	if( transformToInt > (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])) || transformToInt == 0){
+		system("clear");
+		printf("mauvais choix\n");
+	}
+	system("clear");
+	PasserRenverssement(transformToInt);
 }
 void PasserPaiement(int i){
-	double montant;
-	printf("Entrer le montant:");
-	scanf("%lf",&montant);
 
-	achat[i-1] = montant;
-	
-	disponibilite[i-1] += montant;
-	printf("%lf\n", disponibilite[i-1]);
-	printf("paiement reussie\n");
+}
+void MenuPasserPaiement(){
+	int i,transformToInt;
+	char choix;
+	printf("presser un numero pour avoir plus d info sur un client\n\n");
 
+	for (i = 0; i <  (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])); ++i)
+	{	
+		
+		printf("(%d)\t", i+1);
+		printf("%s\n",nomPrenom[i]);
+	}
+
+	scanf("%s",&choix);
+	transformToInt = choix - '0';
+	if( transformToInt > (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])) || transformToInt == 0){
+		system("clear");
+		printf("mauvais choix\n");
+	}
+	system("clear");
+	PasserPaiement(transformToInt);
+}
+void AjouterClient(){
+	char nom[50];
+	char prenom[50];
+	printf("\nAjout d u n client\n\n");
+	printf("Entrer son nom\n");
+	scanf("%s",&nomPrenom[(int)(sizeof(nomPrenom)/sizeof(nomPrenom[0]))+1]);
+	fgets(&nomPrenom[(int)(sizeof(nomPrenom)/sizeof(nomPrenom[0]))+1], sizeof(&nomPrenom[(int)(sizeof(nomPrenom)/sizeof(nomPrenom[0]))+1]), stdin);
+	printf("Entrer l adresse\n");
+	scanf("%s",&adresse[(int)(sizeof(adresse)/sizeof(adresse[0]))+1]);
+	printf("Entrer l telephone\n");
+	scanf("%s",&telephone[(int)(sizeof(telephone)/sizeof(telephone[0]))+1]);
+	printf("Entrer l email\n");
+	scanf("%s",&email[(int)(sizeof(email)/sizeof(email[0]))+1]);
+	printf("Entrer l noCarte\n");
+	scanf("%s",&noCarte[(int)(sizeof(noCarte)/sizeof(noCarte[0]))+1]);
+
+	limiteCredit[(int)(sizeof(limiteCredit)/sizeof(limiteCredit[0]))] = 0.0;
+
+	disponibilite[(int)(sizeof(disponibilite)/sizeof(disponibilite[0]))] = 0.0;
+
+	dette[(int)(sizeof(dette)/sizeof(dette[0]))] = 0.0;
+
+	interet[(int)(sizeof(interet)/sizeof(interet[0]))] = 0.0;
+
+	penaliter[(int)(sizeof(penaliter)/sizeof(penaliter[0]))] = 0.0;
+
+	minimumApayer[(int)(sizeof(minimumApayer)/sizeof(minimumApayer[0]))] = 0.0;
+
+	printf("Inscription reussie\n");
 	printf("\n\npress any key to continue");
 	getch();
 	system("clear");
 	userInterface();
-}
-void MenuPasserPaiement(){
-	char choix;
-	if(NbreAjoutPourClient==-1){
-
-		printf("il n existe pas encore de client\n");
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		userInterface();
-	}
-	else{
-		
-		if(NbreAjoutPourClient!=-1){
-			printf("presser un numero pour passer un paiement\n\n");
-			printf("\tnom\t\tPrenom\t\tId\n");
-
-			int i;
-
-			for (i = 0; i < NbreAjoutPourClient+1; ++i)
-			{
-				printf("(%d)\t",i+1 );
-				printf("%s\t\t",&nom[i] );
-				printf("%s\t\t",&Prenom[i] );
-				printf("%d\n",id[i] );
-			}
-			scanf("%s",&choix);
-			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6' && choix!='7' && choix!='8' && choix!='9'){
-				system("clear");
-				printf("mauvais choix\n");
-				MenuPasserPaiement();
-			}
-			system("clear");
-			PasserPaiement(choix-'0');
-		}
-	}
-}
-void AjouterClient(){
-	NbreAjoutPourClient++;
-	if (NbreAjoutPourClient!=10)
-	{
-		printf("\nAjout d u n client\n\n");
-		printf("Entrer son nom:");
-		scanf("%s",&nom[NbreAjoutPourClient]);
-		printf("Entrer son Prenom:");
-		scanf("%s",&Prenom[NbreAjoutPourClient]);
-		// fgets(&Prenom[NbreAjoutPourClient], sizeof(&Prenom[NbreAjoutPourClient]), stdin);
-		printf("Entrer l adresse:");
-		scanf("%s",&adresse[NbreAjoutPourClient]);
-		printf("Entrer l telephone:");
-		scanf("%s",&telephone[NbreAjoutPourClient]);
-		printf("Entrer l email:");
-		scanf("%s",&email[NbreAjoutPourClient]);
-
-		noCarte[NbreAjoutPourClient] = NbreAjoutPourClient +99;
-
-		limiteCredit[NbreAjoutPourClient] = 0.0;
-
-		disponibilite[NbreAjoutPourClient] = 0.0;
-
-		dette[NbreAjoutPourClient] = 0.0;
-
-		interet[NbreAjoutPourClient] = 0.0;
-
-		penaliter[NbreAjoutPourClient] = 0.0;
-
-		minimumApayer[NbreAjoutPourClient] = 0.0;
-
-		id[NbreAjoutPourClient] = NbreAjoutPourClient+1;
-		
-
-		printf("\n\nInscription reussie\n");
-
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		userInterface();
-	}
-	else{
-		printf("systeme concue pour 10 clients seulement\n");
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		userInterface();
-	}
-	
 
 }
 
 void InfoSurClient(int i){
 	printf("affichage des infos\n\n");
-	printf("nom\tprenom\tid\tadresse\ttelephone\temail\tnoCarte\tlimiteCredit\tdisponibilite\tdette\t\tinteret\t\tpenaliter\tminimumApayer\n\n");
+	printf("nom\tprenom\tid\t\tadresse\t\t\t\ttelephone\temail\t\tnoCarte\t\t\tlimiteCredit\tdisponibilite\tdette\tinteret\tpenaliter\tminimumApayer\n\n");
 	
-	printf("%s\t",&nom[i-1] );
-	printf("%s\t",&Prenom[i-1] );
-	printf("%d\t",id[i-1] );
-	printf("%s\t",&adresse[i-1] );
-	printf("%s\t\t",&telephone[i-1] );
-	printf("%s\t",&email[i-1] );
-	printf("%ld\t",noCarte[i-1] );
-	printf("%lf\t",limiteCredit[i-1] );
-	printf("%lf\t",disponibilite[i-1] );
-	printf("%lf\t",dette[i-1] );
-	printf("%lf\t",interet[i-1] );
-	printf("%lf\t",penaliter[i-1] );
-	printf("%lf\n",minimumApayer[i-1] );
+		printf("%s\t",nomPrenom[i-1] );
+		printf("%s\t",id[i-1] );
+		printf("%s\t",adresse[i-1] );
+		printf("%s\t",telephone[i-1] );
+		printf("%s\t",email[i-1] );
+		printf("%s\t",noCarte[i-1] );
+		printf("%f\t",limiteCredit[i-1] );
+		printf("%f\t",disponibilite[i-1] );
+		printf("%f\t",dette[i-1] );
+		printf("%f\t",interet[i-1] );
+		printf("%f\t",penaliter[i-1] );
+		printf("%f\n",minimumApayer[i-1] );
+		printf("\n\npress any key to continue");
+		getch();
+		system("clear");
+		userInterface();
+}
+
+void MenuInfoSurClient(){
+	int i,transformToInt;
+	char choix;
+	printf("presser un numero pour avoir plus d info sur un client\n\n");
+
+	for (i = 0; i <  (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])); ++i)
+	{	
+		
+		printf("(%d)\t", i+1);
+		printf("%s\n",nomPrenom[i]);
+	}
+
+	scanf("%s",&choix);
+	transformToInt = choix - '0';
+	if( transformToInt > (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])) || transformToInt == 0){
+		system("clear");
+		printf("mauvais choix\n");
+	}
+	system("clear");
+	InfoSurClient(transformToInt);
+}
+
+
+void listeClient(){
+	int i;
+	printf("affichage de la liste des clients\n\n");
+
+	for (i = 0; i < (int)(sizeof(nomPrenom)/sizeof(nomPrenom[0])); ++i)
+	{
+		printf("%s\n",nomPrenom[i] );
+	}
 	printf("\n\npress any key to continue");
 	getch();
 	system("clear");
 	userInterface();
 }
 
-void MenuInfoSurClient(){
-	char choix;
-	if(NbreAjoutPourClient==-1){
-
-		printf("il n existe pas encore de client\n");
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		userInterface();
-	}
-	else{
-		
-		if(NbreAjoutPourClient!=-1){
-			printf("presser un numero pour afficher plus d information\n\n");
-			printf("\tnom\t\tPrenom\t\tId\n");
-
-			int i;
-
-			for (i = 0; i < NbreAjoutPourClient+1; ++i)
-			{
-				printf("(%d)\t",i+1 );
-				printf("%s\t\t",&nom[i] );
-				printf("%s\t\t",&Prenom[i] );
-				printf("%d\n",id[i] );
-			}
-			scanf("%s",&choix);
-			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6' && choix!='7' && choix!='8' && choix!='9'){
-				system("clear");
-				printf("mauvais choix\n");
-				MenuInfoSurClient();
-			}
-			system("clear");
-			InfoSurClient(choix-'0');
-		}
-	}
-	
-}
-
-
-void listeClient(){
-	if(NbreAjoutPourClient==-1){
-
-		printf("il n existe pas encore de client\n");
-		printf("\n\npress any key to continue");
-		getch();
-		system("clear");
-		userInterface();
-	}
-	else{
-		
-		if(NbreAjoutPourClient!=-1){
-			printf("affichage de la liste des clients\n\n");
-			printf("nom\t\tPrenom\t\t\tId\n\n");
-
-			int i;
-
-			for (i = 0; i < NbreAjoutPourClient+1; ++i)
-			{
-				printf("%s\t\t",&nom[i] );
-				printf("%s\t\t\t",&Prenom[i] );
-				printf("%d\n",id[i] );
-			}
-			printf("\n\npress any key to continue");
-			getch();
-			system("clear");
-			userInterface();
-		}
-	}
-
-}
 void userInterface(){
 	char choix;
 	printf("\t\t\t\t\t\t\t\t\tNom de l’Institution financière\n");
@@ -722,7 +548,7 @@ void userInterface(){
 		break;
 		case '6':{
 			system("clear");
-			MenuEffectuerBilling();
+			// EffectuerBilling();
 		}
 		break;
 		case '7':{
@@ -735,8 +561,6 @@ void userInterface(){
 }
 
 void login(){
-
-
 	
 	char username[50],password[50];
 	printf("\t\t\t\t\t\t\t\t\tNom de l’Institution financière\n");
@@ -767,7 +591,7 @@ void login(){
 
 		for (i = 0; i < (int)(sizeof(usernameDataVerif)/sizeof(usernameDataVerif[0])); ++i)
 		{
-			if ( (strcmp(username,usernameDataVerif[i]) == 0) && (strcmp(password,passwordDataVerif[i]) == 0) )
+			 if ( (strcmp(username,usernameDataVerif[i]) == 0) && (strcmp(password,passwordDataVerif[i]) == 0) )
 			{
 				if ((strcmp(username,usernameDataVerif[0]) == 0) && (strcmp(password,passwordDataVerif[0]) == 0))
 				{
@@ -794,31 +618,22 @@ void login(){
 			login();
 		}
 		
-
+		  
 	}
 
 	else
 	{
 		printf("desactivation\n");
 	}
+		
 
-
-}
-
-void initAchat(){
-	int i;
-	for (i = 0; i < 9; ++i)
-	{
-		achat[i] = 0;
-	}
 }
 
 
 
 int main(int argc, char const *argv[])
 {
-	initAchat();
 	
-	login();
+	 login();
 	return 0;
 }
