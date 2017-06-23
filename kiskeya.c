@@ -353,29 +353,39 @@ char *adresse[];
 char *telephone[];
 char *email[];
 long noCarte[];
-double limiteCredit[20];
-double disponibilite[20];
-double dette[20];
-double interet[20];
-double penaliter[20];
-double minimumApayer[20];
-double achat[20];
+double limiteCredit[9];
+double disponibilite[9];
+double dette[9];
+double interet[9];
+double penaliter[9];
+double minimumApayer[9];
+double achat[9];
+
+
 
 
 void EffectuerBilling(int i){
 	if (achat[i-1] != 0)
 	{
 		dette [i-1] = achat [i-1] + interet[i-1] + penaliter [i-1]; 
+		disponibilite[i-1] = limiteCredit[i-1] - dette[i-1];
+		penaliter [ i-1] = 0.03 * dette [i-1];
+		interet[i-1] = 0.0333 * dette[i-1];
+		minimumApayer[i-1] = 0.06 * dette [i-1];
+		achat[i-1] = 0;
+		printf("Billing reussie\n");
+		printf("\n\npress any key to continue");
+		getch();
+		system("clear");
+		userInterface();
 	}
-	disponibilite[i-1] = limiteCredit[i-1] - dette[i-1];
-	penaliter [ i-1] = 0.03 * dette [i-1];
-	interet[i-1] = 0.0333 * dette[i-1];
-	minimumApayer[i-1] = 0.06 * dette [i-1];
-	printf("Billing reussie\n");
-	printf("\n\npress any key to continue");
-	getch();
-	system("clear");
-	userInterface();
+	else{
+		printf("Billing deja effectuer sur l achat\n");
+		printf("\n\npress any key to continue");
+		getch();
+		system("clear");
+		userInterface();
+	}
 }
 void MenuEffectuerBilling(){
 	char choix;
@@ -388,6 +398,8 @@ void MenuEffectuerBilling(){
 		userInterface();
 	}
 	else{
+
+
 		
 		if(NbreAjoutPourClient!=-1){
 			printf("presser un numero pour effectuer un billing\n\n");
@@ -403,7 +415,8 @@ void MenuEffectuerBilling(){
 				printf("%d\n",id[i] );
 			}
 			scanf("%s",&choix);
-			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
+
+			while( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6' && choix!='7' && choix!='8' && choix!='9'){
 				system("clear");
 				printf("mauvais choix\n");
 				MenuEffectuerBilling();
@@ -453,7 +466,7 @@ void MenuPasserRenversement(){
 				printf("%d\n",id[i] );
 			}
 			scanf("%s",&choix);
-			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
+			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6' && choix!='7' && choix!='8' && choix!='9'){
 				system("clear");
 				printf("mauvais choix\n");
 				MenuPasserRenversement();
@@ -505,7 +518,7 @@ void MenuPasserPaiement(){
 				printf("%d\n",id[i] );
 			}
 			scanf("%s",&choix);
-			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
+			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6' && choix!='7' && choix!='8' && choix!='9'){
 				system("clear");
 				printf("mauvais choix\n");
 				MenuPasserPaiement();
@@ -517,42 +530,53 @@ void MenuPasserPaiement(){
 }
 void AjouterClient(){
 	NbreAjoutPourClient++;
-	printf("\nAjout d u n client\n\n");
-	printf("Entrer son nom:");
-	scanf("%s",&nom[NbreAjoutPourClient]);
-	printf("Entrer son Prenom:");
-	scanf("%s",&Prenom[NbreAjoutPourClient]);
-	// fgets(&Prenom[NbreAjoutPourClient], sizeof(&Prenom[NbreAjoutPourClient]), stdin);
-	printf("Entrer l adresse:");
-	scanf("%s",&adresse[NbreAjoutPourClient]);
-	printf("Entrer l telephone:");
-	scanf("%s",&telephone[NbreAjoutPourClient]);
-	printf("Entrer l email:");
-	scanf("%s",&email[NbreAjoutPourClient]);
+	if (NbreAjoutPourClient!=10)
+	{
+		printf("\nAjout d u n client\n\n");
+		printf("Entrer son nom:");
+		scanf("%s",&nom[NbreAjoutPourClient]);
+		printf("Entrer son Prenom:");
+		scanf("%s",&Prenom[NbreAjoutPourClient]);
+		// fgets(&Prenom[NbreAjoutPourClient], sizeof(&Prenom[NbreAjoutPourClient]), stdin);
+		printf("Entrer l adresse:");
+		scanf("%s",&adresse[NbreAjoutPourClient]);
+		printf("Entrer l telephone:");
+		scanf("%s",&telephone[NbreAjoutPourClient]);
+		printf("Entrer l email:");
+		scanf("%s",&email[NbreAjoutPourClient]);
 
-	noCarte[NbreAjoutPourClient] = NbreAjoutPourClient +99;
+		noCarte[NbreAjoutPourClient] = NbreAjoutPourClient +99;
 
-	limiteCredit[NbreAjoutPourClient] = 0.0;
+		limiteCredit[NbreAjoutPourClient] = 0.0;
 
-	disponibilite[NbreAjoutPourClient] = 0.0;
+		disponibilite[NbreAjoutPourClient] = 0.0;
 
-	dette[NbreAjoutPourClient] = 0.0;
+		dette[NbreAjoutPourClient] = 0.0;
 
-	interet[NbreAjoutPourClient] = 0.0;
+		interet[NbreAjoutPourClient] = 0.0;
 
-	penaliter[NbreAjoutPourClient] = 0.0;
+		penaliter[NbreAjoutPourClient] = 0.0;
 
-	minimumApayer[NbreAjoutPourClient] = 0.0;
+		minimumApayer[NbreAjoutPourClient] = 0.0;
 
-	id[NbreAjoutPourClient] = NbreAjoutPourClient+1;
+		id[NbreAjoutPourClient] = NbreAjoutPourClient+1;
+		
+
+		printf("\n\nInscription reussie\n");
+
+		printf("\n\npress any key to continue");
+		getch();
+		system("clear");
+		userInterface();
+	}
+	else{
+		printf("systeme concue pour 10 clients seulement\n");
+		printf("\n\npress any key to continue");
+		getch();
+		system("clear");
+		userInterface();
+	}
 	
-
-	printf("\n\nInscription reussie\n");
-
-	printf("\n\npress any key to continue");
-	getch();
-	system("clear");
-	userInterface();
 
 }
 
@@ -566,7 +590,7 @@ void InfoSurClient(int i){
 	printf("%s\t",&adresse[i-1] );
 	printf("%s\t\t",&telephone[i-1] );
 	printf("%s\t",&email[i-1] );
-	printf("%d\t",noCarte[i-1] );
+	printf("%ld\t",noCarte[i-1] );
 	printf("%lf\t",limiteCredit[i-1] );
 	printf("%lf\t",disponibilite[i-1] );
 	printf("%lf\t",dette[i-1] );
@@ -605,7 +629,7 @@ void MenuInfoSurClient(){
 				printf("%d\n",id[i] );
 			}
 			scanf("%s",&choix);
-			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5'){
+			if( choix!='1' && choix!='2' && choix!='3' && choix!='4' && choix!='5' && choix!='6' && choix!='7' && choix!='8' && choix!='9'){
 				system("clear");
 				printf("mauvais choix\n");
 				MenuInfoSurClient();
@@ -783,7 +807,7 @@ void login(){
 
 void initAchat(){
 	int i;
-	for (i = 0; i < 20; ++i)
+	for (i = 0; i < 9; ++i)
 	{
 		achat[i] = 0;
 	}
